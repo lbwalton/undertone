@@ -43,18 +43,18 @@ Each of these works in the required smoke checks; the remaining step is a human 
 - [ ] **US-024** Signed and notarized macOS build
 - [ ] **US-025** Auto-update from GitHub Releases
 
-## iOS (prd-ios.json, 9/15 verified)
+## iOS (prd-ios.json, 10/15 verified)
 
 - [x] **US-101** Shared formatter spec
 - [x] **US-102** Xcode project, app shell, and project law
 - [x] **US-103** Transcription and formatting pipeline in Swift
+- [x] **US-104** API key, settings, and onboarding
 - [x] **US-105** In-app dictation
 - [x] **US-106** Keyboard extension
 - [x] **US-107** The bounce: record, return, insert
 - [x] **US-110** TestFlight on Labroi's iPhone
 - [x] **US-111** Formatter parity: prompt echo and compliance guards on iOS
 - [x] **US-112** Hot mic: in-place dictation after the first bounce
-- [ ] **US-104** API key, settings, and onboarding · built, live check pending
 - [ ] **US-108** Action Button and Siri Shortcut dictation · built, live check pending
 - [ ] **US-109** Dictionary, corrections, and expansions on iOS · built, live check pending
 - [ ] **US-115** Warm-claim recovery: the mic key never dead-ends when the app is gone · built, live check pending
