@@ -1,6 +1,6 @@
 # Murmur Roadmap
 
-> Generated from prd.json (21/30 stories verified). Do not edit by hand: change prd.json, then run `npm run roadmap`.
+> Generated from prd.json (21/31 stories verified). Do not edit by hand: change prd.json, then run `npm run roadmap`.
 
 ## Done and verified
 
@@ -42,8 +42,9 @@ Each of these works in the required smoke checks; the remaining step is a human 
 
 - [ ] **US-024** Signed and notarized macOS build
 - [ ] **US-025** Auto-update from GitHub Releases
+- [ ] **US-031** Chat guard catches affirmation-opener answers
 
-## iOS (prd-ios.json, 10/15 verified)
+## iOS (prd-ios.json, 10/16 verified)
 
 - [x] **US-101** Shared formatter spec
 - [x] **US-102** Xcode project, app shell, and project law
@@ -60,6 +61,7 @@ Each of these works in the required smoke checks; the remaining step is a human 
 - [ ] **US-115** Warm-claim recovery: the mic key never dead-ends when the app is gone · built, live check pending
 - [ ] **US-113** App Store release
 - [ ] **US-114** Ownership, license, and employer clearance
+- [ ] **US-116** Long takes insert: the pending session outlives the longest legal take
 
 ## Horizon (not yet stories)
 

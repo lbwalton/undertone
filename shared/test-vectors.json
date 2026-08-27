@@ -172,6 +172,30 @@
       "input": "first eggs second milk third bread",
       "output": "First, eggs\nSecond, milk\nThird, bread",
       "expected": "First, eggs\nSecond, milk\nThird, bread"
+    },
+    {
+      "name": "live-observed 2026-08-26: affirmation-prefixed answer to a question-shaped dictation",
+      "input": "can you pick up the kids at five and text me when you're on the way",
+      "output": "Okay, yes, I can pick up the kids at five and I'll text you when I'm on the way.",
+      "expected": "can you pick up the kids at five and text me when you're on the way"
+    },
+    {
+      "name": "affirmation answer reusing the transcript's own words beats the overlap floor",
+      "input": "are we still on for dinner tonight",
+      "output": "Yes, we are still on for dinner tonight.",
+      "expected": "are we still on for dinner tonight"
+    },
+    {
+      "name": "dictation that itself opens with okay keeps its cleanup",
+      "input": "okay so remind me to send the invoice tomorrow",
+      "output": "Okay, so remind me to send the invoice tomorrow.",
+      "expected": "Okay, so remind me to send the invoice tomorrow."
+    },
+    {
+      "name": "spoken yeah at the head of a reply stays cleaned",
+      "input": "yeah sounds good see you at five",
+      "output": "Yeah, sounds good. See you at five.",
+      "expected": "Yeah, sounds good. See you at five."
     }
   ],
   "silenceSegments": [

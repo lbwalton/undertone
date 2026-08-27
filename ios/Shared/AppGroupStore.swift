@@ -30,8 +30,18 @@ final class AppGroupStore {
     static let suiteName = "group.com.labroi.murmur.ios"
     static let pendingKey = "murmur.bounce.pending"
     static let resultKey = "murmur.bounce.result"
-    // A bounce older than this is an abandoned take, never inserted.
+    // A RESULT older than this is abandoned, never inserted. Freshness is
+    // measured from when the app wrote the text, so it guards against pasting
+    // an old transcript into a new context; it says nothing about how long
+    // the take itself ran. Commands share this window.
     static let staleAfter: TimeInterval = 120
+    // A PENDING session lives as long as a legitimate take can run: the
+    // max-length setting allows 10 minutes of speech, plus transcription and
+    // the swipe back. Sessions used to share the 120s window above, which
+    // silently ate any take longer than ~2 minutes end to end: the keyboard
+    // returned, found the session expired, and could never claim the fresh
+    // result (live loss 2026-08-26, US-116).
+    static let sessionStaleAfter: TimeInterval = 900
 
     private let defaults: UserDefaults?
 
@@ -48,8 +58,10 @@ final class AppGroupStore {
 
     func pendingSession(now: Date = Date()) -> BounceSession? {
         guard let session: BounceSession = read(Self.pendingKey) else { return nil }
-        guard now.timeIntervalSince(session.createdAt) <= Self.staleAfter else {
-            clearSession()
+        guard now.timeIntervalSince(session.createdAt) <= Self.sessionStaleAfter else {
+            // Only the dead session is removed. A read path must never
+            // destroy a result; results expire on their own clock.
+            defaults?.removeObject(forKey: Self.pendingKey)
             return nil
         }
         return session

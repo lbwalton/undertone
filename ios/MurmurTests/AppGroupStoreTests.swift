@@ -45,9 +45,30 @@ final class AppGroupStoreTests: XCTestCase {
     }
 
     func testStalePendingSessionExpires() {
-        let old = Date().addingTimeInterval(-AppGroupStore.staleAfter - 1)
+        let old = Date().addingTimeInterval(-AppGroupStore.sessionStaleAfter - 1)
         store.beginSession(token: "t4", now: old)
         XCTAssertNil(store.pendingSession(), "an abandoned bounce clears itself")
+    }
+
+    // The 2026-08-26 live loss: a take longer than two minutes. The session
+    // begins at the mic tap, so a long take plus transcription plus the swipe
+    // back easily passes 120s; the pending session must outlive the longest
+    // legal take (max-length setting allows 10 minutes) or the fresh result
+    // is unreachable when the keyboard returns.
+    func testLongTakeStillInserts() {
+        store.beginSession(token: "long", now: Date().addingTimeInterval(-480))
+        store.writeResult(BounceResult(token: "long", status: .ok, text: "eight minute take", createdAt: Date()))
+        XCTAssertEqual(store.pendingSession()?.token, "long")
+        XCTAssertEqual(store.consumeResult(token: "long")?.text, "eight minute take")
+    }
+
+    // Reading a stale session must only clear the session; destroying the
+    // result from a read path is how the long-take text was silently lost.
+    func testStaleSessionReadLeavesResultIntact() {
+        store.beginSession(token: "gone", now: Date().addingTimeInterval(-AppGroupStore.sessionStaleAfter - 1))
+        store.writeResult(BounceResult(token: "gone", status: .ok, text: "still here", createdAt: Date()))
+        XCTAssertNil(store.pendingSession())
+        XCTAssertNotNil(store.consumeResult(token: "gone"), "expiring a session must not destroy a fresh result")
     }
 
     func testErrorResultCarriesReadableMessage() {

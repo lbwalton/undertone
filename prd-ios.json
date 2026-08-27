@@ -275,6 +275,21 @@
       "priority": 1,
       "passes": false,
       "notes": "Opened 2026-08-22 from Labroi's live report: dictation worked in one Messages conversation, failed in the next. Root cause (from code, no device logs existed): the App Group can claim warm while the app is suspended or dead. Nothing observed AVAudioSession interruptions, so the system taking the mic (call, Siri, another recorder) stopped the engine silently, iOS suspended the app, and the store kept saying warm with warmUntil up to 90s out. The keyboard then took the in-place path, its Darwin poke reached nobody, and the 2.5s watchdog only showed a message; the promised revert-to-bounce (US-112 criterion) was never implemented, the next tap re-read the stale warm state and dead-ended again, and the message itself was repainted to TAP TO DICTATE by the next 250ms poll tick, so the whole failure looked silent. Second trap: a stale listening claim disarmed the watchdog entirely because confirmation was phase-only, not token-matched. Fix: app-side interruption + willTerminate observers publish cold (mirroring the existing engineConfigChanged handling), publishState stamps takeToken during listening/processing, keyboard confirmation is token-gated, the watchdog force-writes cold so the next tap bounces, and a sticky notice holds failure text until the next tap. os.Logger added on both sides (first logging in the iOS app). Unit-verified: xcodebuild test 60/60 green 2026-08-22, HotMicChannelTests pins takeToken round-trip, legacy decode without the field, and forced-cold-wins. Remaining for Labroi: the live two-conversation loop in the criteria; flip passes then."
+    },
+    {
+      "id": "US-116",
+      "title": "Long takes insert: the pending session outlives the longest legal take",
+      "description": "As a user, when I dictate for several minutes via the bounce and swipe back, my text must insert like any short take. It must never silently vanish into history only.",
+      "acceptanceCriteria": [
+        "AppGroupStore separates the two clocks: results and commands stay fresh for 120s from creation (staleAfter), while the pending session lives sessionStaleAfter = 900s from the mic tap, longer than the 10-minute max take plus transcription and the swipe back",
+        "Reading a stale pending session removes only the session key, never the result; no read path destroys data it does not own",
+        "Unit tests pin the long-take loop: a session begun 8 minutes ago with a fresh result still returns the pending token and consumes the result exactly once; a stale-session read leaves a fresh result intact",
+        "xcodebuild test green",
+        "Verified live by Labroi: a dictation of two minutes or more via the bounce inserts at the cursor on swipe back in Messages"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": "Opened 2026-08-26 from Labroi's live report: a 1-2 minute dictation completed (text present in history) but nothing inserted on swipe back; he had to copy from history manually. Root cause: staleAfter = 120s governed the PENDING SESSION measured from the mic tap, while the max-take setting allows 5 (default 300s) to 10 minutes of speech, so any bounce longer than ~2 minutes end to end expired its own session before the user could return; worse, the stale-session read path called clearSession(), which also deleted the freshly written result, making the loss silent and unrecoverable from the keyboard. History was intact because the pipeline writes HistoryStore independently of the bounce channel. Fix: sessionStaleAfter = 900s for pending sessions (covers the 10-minute cap with headroom), staleAfter stays 120s for result and command freshness measured from their own creation (the guard that matters: never paste an old transcript into a new context), and the stale-session read now removes only the pending key. Pinned in AppGroupStoreTests (testLongTakeStillInserts, testStaleSessionReadLeavesResultIntact). Remaining for Labroi: the live long-dictation loop in the criteria; flip passes then."
     }
   ]
 }

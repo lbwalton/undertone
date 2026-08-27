@@ -96,11 +96,24 @@
       "i'd be happy to",
       "hope this helps"
     ],
-    "complyPatternsComment": "US-030. The tells above catch the formatter REFUSING to work, an output sharing few words with the transcript. The opposite failure is compliance: handed a task-shaped dictation the model performs the task, reusing the speaker's vocabulary, so the overlap floor never trips. These are artifacts a cleanup cannot produce. Apply exactly like tells: fail open to the raw transcript when the pattern matches the OUTPUT but not the INPUT, so speech the user really made is never a tell. Flags: i = case-insensitive, m = multiline (^ and $ match line boundaries).",
+    "complyPatternsComment": "US-030. The tells above catch the formatter REFUSING to work, an output sharing few words with the transcript. The opposite failure is compliance: handed a task-shaped dictation the model performs the task, reusing the speaker's vocabulary, so the overlap floor never trips. These are artifacts a cleanup cannot produce. Apply exactly like tells: fail open to the raw transcript when the pattern matches the OUTPUT but not the INPUT, so speech the user really made is never a tell. Flags: i = case-insensitive, m = multiline (^ and $ match line boundaries). The affirmation-opener pattern (added 2026-08-26, live-observed on iOS): an answer that opens with okay/yes/sure and then reuses the transcript's own words clears the overlap floor, so catch the injected opener itself; anchored and applied to both sides, a dictation that genuinely starts with the same word keeps its cleanup.",
     "complyPatterns": [
-      { "pattern": "\\[[A-Z][^\\]\\n]{1,40}\\]", "flags": "" },
-      { "pattern": "^\\s*(?:here (?:is|are|'s)|sure|certainly|of course|i can help|i'll help)\\b[^.\\n]{0,80}:", "flags": "i" },
-      { "pattern": "^[ \\t]*(?:[*\u2022\u2013-]|\\d+\\.)[ \\t]*$", "flags": "m" }
+      {
+        "pattern": "\\[[A-Z][^\\]\\n]{1,40}\\]",
+        "flags": ""
+      },
+      {
+        "pattern": "^\\s*(?:here (?:is|are|'s)|sure|certainly|of course|i can help|i'll help)\\b[^.\\n]{0,80}:",
+        "flags": "i"
+      },
+      {
+        "pattern": "^[ \\t]*(?:[*•–-]|\\d+\\.)[ \\t]*$",
+        "flags": "m"
+      },
+      {
+        "pattern": "^\\s*(?:okay|ok|yes|yeah|yep|sure|alright|all right|got it|understood|absolutely|will do|no problem|sounds good)\\b",
+        "flags": "i"
+      }
     ],
     "lengthMultiplier": 3,
     "lengthSlack": 200,
