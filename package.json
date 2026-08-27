@@ -1,7 +1,7 @@
 {
   "name": "murmur",
   "productName": "Murmur",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Push to talk dictation for Windows and macOS. Speak anywhere, Murmur types it.",
   "main": "src/main/main.js",
   "author": "Labroi Walton",
