@@ -58,8 +58,8 @@ Each of these works in the required smoke checks; the remaining step is a human 
 - [x] **US-112** Hot mic: in-place dictation after the first bounce
 - [ ] **US-108** Action Button and Siri Shortcut dictation · built, live check pending
 - [ ] **US-109** Dictionary, corrections, and expansions on iOS · built, live check pending
+- [ ] **US-113** App Store release · built, live check pending
 - [ ] **US-115** Warm-claim recovery: the mic key never dead-ends when the app is gone · built, live check pending
-- [ ] **US-113** App Store release
 - [ ] **US-114** Ownership, license, and employer clearance
 - [ ] **US-116** Long takes insert: the pending session outlives the longest legal take
 
