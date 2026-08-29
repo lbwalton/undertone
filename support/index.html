@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support · Murmur Voice Dictation</title>
+<meta name="description" content="Set up Murmur in two minutes: paste a free Groq API key, enable the keyboard, and dictate anywhere. Answers to the most common questions, and how to reach the developer.">
+<link rel="canonical" href="https://lbwalton.github.io/murmur/support/">
+<meta property="og:site_name" content="Murmur Voice Dictation">
+<meta property="og:title" content="Support · Murmur Voice Dictation">
+<meta property="og:description" content="Setup steps and answers to the most common Murmur questions.">
+<meta property="og:url" content="https://lbwalton.github.io/murmur/support/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I set up Murmur?","acceptedAnswer":{"@type":"Answer","text":"Create a free API key at console.groq.com, open Murmur, paste the key in onboarding step 1, and tap Test connection. Then enable the keyboard: Settings, General, Keyboard, Keyboards, Add New Keyboard, Murmur, and turn on Allow Full Access. Open any app, switch to the Murmur keyboard with the globe key, and tap the large mic key to dictate."}},
+{"@type":"Question","name":"Why does the mic key open the Murmur app the first time?","acceptedAnswer":{"@type":"Answer","text":"Apple does not allow keyboard extensions to access the microphone, so the Murmur app performs all recording. Your first dictation of a session opens the app, which starts recording instantly with no taps. Swipe back and your text is waiting at the cursor. After that first take the microphone stays warm for a short window, so later dictations record in place without leaving your app."}},
+{"@type":"Question","name":"Why does the keyboard need Full Access?","acceptedAnswer":{"@type":"Answer","text":"Full Access lets the keyboard receive your finished transcript from the Murmur app through Apple's App Group storage on your device. The keyboard itself contains no networking and no audio code, so it cannot record and it cannot send anything anywhere. Without Full Access the keyboard still types, deletes, and switches keyboards, but dictation results cannot reach it."}},
+{"@type":"Question","name":"Where does my audio go?","acceptedAnswer":{"@type":"Answer","text":"Directly from your phone to the transcription API you configured, over HTTPS, and nowhere else. The default is Groq's free tier with your own key. The developer runs no servers, so your audio and text never pass through anyone but the provider you chose."}},
+{"@type":"Question","name":"Why does the orange microphone indicator stay on after I dictate?","acceptedAnswer":{"@type":"Answer","text":"After a take, Murmur keeps the microphone warm for a short idle window so your next dictation starts instantly without switching apps. The orange indicator is iOS being honest about that. The window length is configurable in Murmur settings, including Off, which releases the microphone after every take, and it always releases on its own after the window lapses."}},
+{"@type":"Question","name":"Murmur says No API key yet. What do I do?","acceptedAnswer":{"@type":"Answer","text":"Murmur needs a transcription key you supply. Create one free at console.groq.com, then open Murmur settings and paste it into the API key field. There is no Murmur account; the key connects your phone directly to Groq."}},
+{"@type":"Question","name":"How do I get help or report a bug?","acceptedAnswer":{"@type":"Answer","text":"Email lbwalton@gmail.com, or open an issue at github.com/lbwalton/murmur. Include what you dictated into (which app), what you expected, and what happened instead."}}
+]}
+</script>
+<style>
+:root{--ink:#0F0E11;--panel:#17161B;--text:#ECE9E4;--amber:#F0A44B;--dim:rgba(236,233,228,.62);--line:rgba(236,233,228,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--text);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:0 auto;padding:64px 24px 40px}
+.micro{font-family:ui-monospace,"Cascadia Mono",Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+h1{font-size:26px;line-height:1.3;margin:10px 0 20px;font-weight:600}
+h2{font-size:17px;margin:32px 0 8px;font-weight:600}
+h3{font-size:15px;margin:0 0 6px;font-weight:600}
+p,li,ol{color:var(--dim)}
+p{margin:0 0 12px}
+ol{padding-left:20px;margin:0 0 14px}
+li{margin:6px 0}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0}
+nav{display:flex;gap:22px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line)}
+footer{max-width:680px;margin:0 auto;padding:0 24px 56px;color:var(--dim);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <p class="micro">Murmur Voice Dictation</p>
+  <h1>Support</h1>
+
+  <section aria-label="Setup">
+    <h2>Two-minute setup</h2>
+    <ol>
+      <li>Create a free API key at <a href="https://console.groq.com" target="_blank" rel="noopener noreferrer">console.groq.com</a>.</li>
+      <li>Open Murmur, paste the key in onboarding step 1, tap Test connection.</li>
+      <li>Enable the keyboard: Settings, General, Keyboard, Keyboards, Add New Keyboard, Murmur, then turn on Allow Full Access.</li>
+      <li>In any app, switch to the Murmur keyboard with the globe key and tap the large mic key.</li>
+    </ol>
+  </section>
+
+  <section aria-label="Frequently asked questions">
+    <h2>Frequently asked questions</h2>
+
+    <div class="card">
+      <h3>How do I set up Murmur?</h3>
+      <p>Create a free API key at console.groq.com, open Murmur, paste the key in onboarding step 1, and tap Test connection. Then enable the keyboard: Settings, General, Keyboard, Keyboards, Add New Keyboard, Murmur, and turn on Allow Full Access. Open any app, switch to the Murmur keyboard with the globe key, and tap the large mic key to dictate.</p>
+    </div>
+
+    <div class="card">
+      <h3>Why does the mic key open the Murmur app the first time?</h3>
+      <p>Apple does not allow keyboard extensions to access the microphone, so the Murmur app performs all recording. Your first dictation of a session opens the app, which starts recording instantly with no taps. Swipe back and your text is waiting at the cursor. After that first take the microphone stays warm for a short window, so later dictations record in place without leaving your app.</p>
+    </div>
+
+    <div class="card">
+      <h3>Why does the keyboard need Full Access?</h3>
+      <p>Full Access lets the keyboard receive your finished transcript from the Murmur app through Apple's App Group storage on your device. The keyboard itself contains no networking and no audio code, so it cannot record and it cannot send anything anywhere. Without Full Access the keyboard still types, deletes, and switches keyboards, but dictation results cannot reach it.</p>
+    </div>
+
+    <div class="card">
+      <h3>Where does my audio go?</h3>
+      <p>Directly from your phone to the transcription API you configured, over HTTPS, and nowhere else. The default is Groq's free tier with your own key. The developer runs no servers, so your audio and text never pass through anyone but the provider you chose.</p>
+    </div>
+
+    <div class="card">
+      <h3>Why does the orange microphone indicator stay on after I dictate?</h3>
+      <p>After a take, Murmur keeps the microphone warm for a short idle window so your next dictation starts instantly without switching apps. The orange indicator is iOS being honest about that. The window length is configurable in Murmur settings, including Off, which releases the microphone after every take, and it always releases on its own after the window lapses.</p>
+    </div>
+
+    <div class="card">
+      <h3>Murmur says No API key yet. What do I do?</h3>
+      <p>Murmur needs a transcription key you supply. Create one free at console.groq.com, then open Murmur settings and paste it into the API key field. There is no Murmur account; the key connects your phone directly to Groq.</p>
+    </div>
+
+    <div class="card">
+      <h3>How do I get help or report a bug?</h3>
+      <p>Email lbwalton@gmail.com, or open an issue at github.com/lbwalton/murmur. Include what you dictated into (which app), what you expected, and what happened instead.</p>
+    </div>
+  </section>
+
+  <nav aria-label="Site pages">
+    <a href="../">Home</a>
+    <a href="../privacy/">Privacy policy</a>
+    <a href="https://github.com/lbwalton/murmur/issues" target="_blank" rel="noopener noreferrer">GitHub issues</a>
+  </nav>
+</main>
+<footer>
+  <p>Murmur is made by Eze Media LLC · <a href="mailto:lbwalton@gmail.com">lbwalton@gmail.com</a></p>
+</footer>
+</body>
+</html>

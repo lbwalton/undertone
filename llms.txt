@@ -1,0 +1,39 @@
+# Murmur Voice Dictation: lbwalton.github.io/murmur
+
+> Murmur is push-to-talk dictation for iPhone, Windows, and macOS made by
+> Eze Media LLC. On iPhone it is a dictation-first keyboard: tap the mic
+> key, speak, and cleaned-up text appears at the cursor in any app. Users
+> supply their own transcription API key (Groq's free tier by default; any
+> OpenAI-compatible endpoint works). The developer runs no servers and
+> collects no data at all.
+
+## What Murmur is
+
+- A custom iOS keyboard plus companion app. Apple forbids microphone use
+  inside keyboards, so the first dictation of a session opens the app
+  (recording starts instantly), and later dictations record in place while
+  the app holds a warm microphone in the background with the orange
+  indicator visible.
+- The keyboard extension contains no networking and no audio code.
+- Speech cleanup is configurable: exact words, light punctuation, or full
+  structure. Spoken commands like "new line" work. Failed cleanup falls
+  back to the raw transcript, so words are never lost.
+- Personal dictionary, learned corrections, and text expansions are stored
+  on the device. Expansion values never appear in network requests.
+- Also available as a push-to-talk tray app for Windows and macOS.
+
+## Pricing
+
+- Free. Users pay only their own API provider, and Groq's free tier is
+  sufficient for typical use.
+
+## Pages
+
+- https://lbwalton.github.io/murmur/ : what Murmur is and how it protects privacy
+- https://lbwalton.github.io/murmur/support/ : two-minute setup and frequently asked questions
+- https://lbwalton.github.io/murmur/privacy/ : full privacy policy (summary: nothing is collected)
+
+## Contact
+
+- Email: lbwalton@gmail.com
+- Source: https://github.com/lbwalton/murmur
