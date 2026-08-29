@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · Murmur Voice Dictation</title>
+<meta name="description" content="Murmur collects nothing. No accounts, no analytics, no developer servers. Audio goes only to the transcription API you configure, and your key stays in the iOS Keychain.">
+<link rel="canonical" href="https://lbwalton.github.io/murmur/privacy/">
+<meta property="og:site_name" content="Murmur Voice Dictation">
+<meta property="og:title" content="Privacy Policy · Murmur Voice Dictation">
+<meta property="og:description" content="Murmur collects nothing. Audio goes only to the API you configure.">
+<meta property="og:url" content="https://lbwalton.github.io/murmur/privacy/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Murmur Privacy Policy","url":"https://lbwalton.github.io/murmur/privacy/","about":{"@type":"SoftwareApplication","name":"Murmur Voice Dictation"},"dateModified":"2026-08-29"}
+</script>
+<style>
+:root{--ink:#0F0E11;--panel:#17161B;--text:#ECE9E4;--amber:#F0A44B;--dim:rgba(236,233,228,.62);--line:rgba(236,233,228,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--text);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:0 auto;padding:64px 24px 40px}
+.micro{font-family:ui-monospace,"Cascadia Mono",Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+h1{font-size:26px;line-height:1.3;margin:10px 0 6px;font-weight:600}
+h2{font-size:17px;margin:32px 0 8px;font-weight:600}
+p,li{color:var(--dim)}
+p{margin:0 0 14px}
+p strong{color:var(--text);font-weight:600}
+ul{padding-left:20px;margin:0 0 14px}
+li{margin:6px 0}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{display:flex;gap:22px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line)}
+footer{max-width:680px;margin:0 auto;padding:0 24px 56px;color:var(--dim);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <p class="micro">Murmur Voice Dictation</p>
+  <h1>Privacy Policy</h1>
+  <p class="micro">Effective 2026-08-29</p>
+
+  <h2>The short version</h2>
+  <p><strong>Murmur collects nothing.</strong> There are no accounts, no
+  analytics, no tracking, and no servers operated by the developer. Your
+  dictation audio travels directly from your device to the transcription
+  service you configured, and the text comes straight back.</p>
+
+  <h2>What happens when you dictate</h2>
+  <p>When you record a dictation, the audio is sent over HTTPS to the API
+  endpoint you set up in Murmur's settings (the free Groq tier by default,
+  or any OpenAI-compatible endpoint you choose). That provider transcribes
+  it and returns text. The same applies to the optional text cleanup step,
+  which sends the transcript, never the audio, to the chat model you
+  configured. The developer of Murmur never sees, stores, or has access to
+  your audio or your text. Your relationship with the transcription
+  provider is governed by that provider's own privacy policy (for Groq, see
+  <a href="https://groq.com/privacy-policy" target="_blank" rel="noopener noreferrer">groq.com/privacy-policy</a>).</p>
+
+  <h2>What stays on your device</h2>
+  <ul>
+    <li>Your API key, stored in the iOS Keychain (never in shared storage, never in logs).</li>
+    <li>Dictation history, if you leave it enabled. It has an off switch and a clear button.</li>
+    <li>Your personal dictionary, learned corrections, and text expansions. Expansion values are applied after formatting and never appear in any network request.</li>
+    <li>All settings.</li>
+  </ul>
+
+  <h2>The keyboard</h2>
+  <p>The Murmur keyboard extension contains no networking code and no audio
+  code, and it cannot record. It exchanges only the finished transcript and
+  small status values with the Murmur app through Apple's App Group
+  storage on your device. That exchange is why iOS requires the Full
+  Access permission; nothing you type is sent anywhere by the keyboard.</p>
+
+  <h2>The microphone</h2>
+  <p>Recording only happens when you start a dictation. After a take, the
+  microphone stays warm for a short idle window you control (including
+  Off) so follow-up dictations are instant, and the system's orange
+  microphone indicator is visible the entire time. When the window lapses,
+  Murmur releases the microphone completely.</p>
+
+  <h2>Children</h2>
+  <p>Murmur collects no data from anyone, including children, and is rated
+  4+.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the new version will be posted at this URL
+  with an updated effective date. Since Murmur's architecture has no data
+  collection to expand quietly, meaningful changes would come with an app
+  update you can read about in its release notes.</p>
+
+  <h2>Contact</h2>
+  <p>Eze Media LLC · <a href="mailto:lbwalton@gmail.com">lbwalton@gmail.com</a></p>
+
+  <nav aria-label="Site pages">
+    <a href="../">Home</a>
+    <a href="../support/">Support</a>
+  </nav>
+</main>
+<footer>
+  <p>Murmur is made by Eze Media LLC.</p>
+</footer>
+</body>
+</html>
