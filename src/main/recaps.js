@@ -4,7 +4,7 @@
 // yearly wrap-up built from the local analytics log. A recap fires at most
 // once per period: each cadence's most recent scheduled time is computed
 // and compared against a persisted lastFired stamp, so a machine that was
-// asleep at 9:00 still gets its recap once, late, when Murmur next checks.
+// asleep at 9:00 still gets its recap once, late, when Undertone next checks.
 
 const CHECK_EVERY_MS = 5 * 60 * 1000;
 
@@ -55,12 +55,12 @@ function summarize(events, kind, baselineWpm, now) {
 function recapText(kind, stats) {
   const period = kind === 'weekly' ? 'week' : kind === 'monthly' ? 'month' : 'year';
   if (!stats.count) {
-    return { title: `Murmur ${kind} recap`, body: `A quiet ${period}: no dictations. Your hold key misses you.` };
+    return { title: `Undertone ${kind} recap`, body: `A quiet ${period}: no dictations. Your hold key misses you.` };
   }
   const mins = stats.minutes >= 100 ? Math.round(stats.minutes) : Math.round(stats.minutes * 10) / 10;
   const saved = stats.savedMin >= 90 ? `${(stats.savedMin / 60).toFixed(1)} hours` : `${Math.round(stats.savedMin)} minutes`;
   return {
-    title: `Murmur ${kind} recap`,
+    title: `Undertone ${kind} recap`,
     body: `This ${period}: ${mins} min dictated, ${stats.words.toLocaleString()} words, about ${saved} saved versus typing.`,
   };
 }

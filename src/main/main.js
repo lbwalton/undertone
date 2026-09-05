@@ -42,6 +42,22 @@ const SMOKE = process.argv.includes('--smoke');
 // data: the keyStorage check now exercises a scratch settings.json, never
 // the user's actual key.
 if (SMOKE) app.setPath('userData', app.getPath('userData') + '-smoke');
+
+// Rebrand migration: the productName change from Murmur to Undertone moved
+// userData to a new folder. On first launch under the new name, adopt the
+// old profile wholesale (settings, history, analytics) so nothing is lost.
+// The old folder is left in place untouched as a fallback.
+if (!SMOKE) {
+  try {
+    const newDir = app.getPath('userData');
+    const oldDir = path.join(path.dirname(newDir), 'Murmur');
+    if (!fs.existsSync(path.join(newDir, 'settings.json')) && fs.existsSync(path.join(oldDir, 'settings.json'))) {
+      fs.cpSync(oldDir, newDir, { recursive: true, force: false, errorOnExist: false });
+    }
+  } catch {
+    // A failed migration must never block launch; the app just starts fresh.
+  }
+}
 const ASSETS = path.join(__dirname, '..', '..', 'assets', 'generated');
 const OVERLAY_SIZE = { width: 420, height: 120 };
 
@@ -327,7 +343,7 @@ function createTray() {
     trayRec = nativeImage.createFromPath(path.join(ASSETS, 'tray-rec.png'));
   }
   tray = new Tray(trayIdle);
-  tray.setToolTip('Murmur, push to talk dictation');
+  tray.setToolTip('Undertone, push to talk dictation');
   const menu = Menu.buildFromTemplate([
     { label: 'Start dictation', click: () => startDictation('toggle') },
     { label: 'Fix last dictation', click: () => openSettings('history', 'edit-latest') },
@@ -335,7 +351,7 @@ function createTray() {
     { label: 'Settings', click: () => openSettings() },
     { label: 'History', click: () => openSettings('history') },
     { type: 'separator' },
-    { label: 'Quit Murmur', click: () => app.quit() },
+    { label: 'Quit Undertone', click: () => app.quit() },
   ]);
   tray.setContextMenu(menu);
   tray.on('double-click', () => openSettings());
@@ -814,7 +830,7 @@ async function runSmoke() {
         checks.modelDropdown = await win.webContents.executeJavaScript(
           "document.getElementById('model').options.length > 0"
         );
-        // Regression check: clicking "Start using Murmur" must actually
+        // Regression check: clicking "Start using Undertone" must actually
         // dismiss the welcome card (visually, not just the hidden attribute).
         checks.onboardDismiss = await win.webContents.executeJavaScript(`(async () => {
           const ob = document.getElementById('onboard');

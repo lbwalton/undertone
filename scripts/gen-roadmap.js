@@ -24,7 +24,7 @@ for (const s of prd.stories) groups[bucket(s)].push(s);
 const line = (s, mark) => `- [${mark}] **${s.id}** ${s.title}`;
 
 const out = [];
-out.push('# Murmur Roadmap');
+out.push('# Undertone Roadmap');
 out.push('');
 out.push(`> Generated from prd.json (${groups.done.length}/${prd.stories.length} stories verified). Do not edit by hand: change prd.json, then run \`npm run roadmap\`.`);
 out.push('');

@@ -10,7 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const PBXPROJ = path.join(__dirname, '..', 'ios', 'Murmur.xcodeproj', 'project.pbxproj');
+const PBXPROJ = path.join(__dirname, '..', 'ios', 'Undertone.xcodeproj', 'project.pbxproj');
 
 const version = process.argv[2];
 if (!version || !/^\d+\.\d+(\.\d+)?$/.test(version)) {

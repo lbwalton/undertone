@@ -121,7 +121,7 @@ function extractTranscript(json, spec = SPEC) {
 
 // Style and level compose the system prompt, a VFlow idea ported here.
 // None fixes only spelling and punctuation, High rewrites into polished
-// prose, Medium matches Murmur's original behavior and stays the default.
+// prose, Medium matches Undertone's original behavior and stays the default.
 // Every rule string comes from the shared spec; this function only owns the
 // composition order, which the spec's comment documents for other platforms.
 function buildFormatPrompt(s, spec = SPEC) {

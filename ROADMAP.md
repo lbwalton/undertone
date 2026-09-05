@@ -1,6 +1,6 @@
-# Murmur Roadmap
+# Undertone Roadmap
 
-> Generated from prd.json (21/31 stories verified). Do not edit by hand: change prd.json, then run `npm run roadmap`.
+> Generated from prd.json (21/32 stories verified). Do not edit by hand: change prd.json, then run `npm run roadmap`.
 
 ## Done and verified
 
@@ -37,6 +37,7 @@ Each of these works in the required smoke checks; the remaining step is a human 
 - [ ] **US-020** Recap notifications
 - [ ] **US-023** Overlay fly-in animation
 - [ ] **US-030** The formatter never does what the dictation asks
+- [ ] **US-115** Rebrand to Undertone
 
 ## Planned
 

@@ -11,8 +11,8 @@ const zlib = require('zlib');
 const { encodePng, makeCanvas, fillRoundedRect, drawBars, INK, AMBER, WHITE } = require('./gen-icons.js');
 
 const ROOT = path.join(__dirname, '..');
-const APP_ICON_DIR = path.join(ROOT, 'ios', 'Murmur', 'Assets.xcassets', 'AppIcon.appiconset');
-const KB_GLYPH_DIR = path.join(ROOT, 'ios', 'MurmurKeyboard', 'Assets.xcassets', 'KeyboardGlyph.imageset');
+const APP_ICON_DIR = path.join(ROOT, 'ios', 'Undertone', 'Assets.xcassets', 'AppIcon.appiconset');
+const KB_GLYPH_DIR = path.join(ROOT, 'ios', 'UndertoneKeyboard', 'Assets.xcassets', 'KeyboardGlyph.imageset');
 
 // App Store marketing icons must carry no alpha channel at all, opaque
 // pixels included (ITMS rejects the upload otherwise), so the app icon is

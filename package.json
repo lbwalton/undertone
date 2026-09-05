@@ -1,8 +1,8 @@
 {
-  "name": "murmur",
-  "productName": "Murmur",
+  "name": "undertone",
+  "productName": "Undertone",
   "version": "0.1.1",
-  "description": "Push to talk dictation for Windows and macOS. Speak anywhere, Murmur types it.",
+  "description": "Push to talk dictation for Windows and macOS. Speak anywhere, Undertone types it.",
   "main": "src/main/main.js",
   "author": "Labroi Walton",
   "license": "MIT",
@@ -26,7 +26,7 @@
   },
   "build": {
     "appId": "com.labroi.murmur",
-    "productName": "Murmur",
+    "productName": "Undertone",
     "npmRebuild": false,
     "directories": {
       "output": "release"
@@ -53,8 +53,8 @@
       "category": "public.app-category.productivity",
       "hardenedRuntime": false,
       "extendInfo": {
-        "NSMicrophoneUsageDescription": "Murmur records your voice while you dictate and sends it only to the transcription API you configured.",
-        "NSAppleEventsUsageDescription": "Murmur presses Cmd+V through System Events to insert your dictated text where your cursor is.",
+        "NSMicrophoneUsageDescription": "Undertone records your voice while you dictate and sends it only to the transcription API you configured.",
+        "NSAppleEventsUsageDescription": "Undertone presses Cmd+V through System Events to insert your dictated text where your cursor is.",
         "LSUIElement": true
       }
     },
@@ -64,7 +64,7 @@
       "deleteAppDataOnUninstall": false
     },
     "portable": {
-      "artifactName": "Murmur-${version}-portable.exe"
+      "artifactName": "Undertone-${version}-portable.exe"
     }
   }
 }

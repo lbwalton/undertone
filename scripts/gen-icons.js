@@ -1,4 +1,4 @@
-// Generates every icon Murmur needs (tray states, app icon, installer .ico)
+// Generates every icon Undertone needs (tray states, app icon, installer .ico)
 // from code, so the repo contains no binary assets and no image libraries.
 'use strict';
 
@@ -97,7 +97,7 @@ function fillRoundedRect(c, rx, ry, rw, rh, radius, color) {
 
 // ---------------------------------------------------------------- the glyph
 
-// Murmur's mark: five waveform bars, the shape the overlay draws when you speak.
+// Undertone's mark: five waveform bars, the shape the overlay draws when you speak.
 const BAR_RATIOS = [0.34, 0.62, 1.0, 0.52, 0.28];
 
 function drawBars(c, cx, cy, unit, color) {
@@ -114,7 +114,8 @@ function drawBars(c, cx, cy, unit, color) {
 }
 
 const INK = [23, 22, 27, 255];        // panel ink
-const AMBER = [240, 164, 75, 255];    // signal amber
+const AMBER = [240, 164, 75, 255];    // signal amber, kept for live recording states
+const VIOLET = [139, 124, 246, 255];  // Undertone brand violet: distinct from murmur's amber at a glance
 const WHITE = [236, 233, 228, 235];   // warm off-white for tray
 const BLACK = [0, 0, 0, 255];         // macOS Template images: black + alpha only
 
@@ -131,7 +132,7 @@ function appIcon(size) {
   // hairline inner edge, drawn as a slightly smaller translucent ring effect
   fillRoundedRect(c, pad + 1, pad + 1, size - (pad + 1) * 2, size - (pad + 1) * 2, size * 0.21, [46, 44, 53, 60]);
   fillRoundedRect(c, pad + 2, pad + 2, size - (pad + 2) * 2, size - (pad + 2) * 2, size * 0.205, INK);
-  drawBars(c, size / 2, size / 2, size * 0.5, AMBER);
+  drawBars(c, size / 2, size / 2, size * 0.5, VIOLET);
   return c;
 }
 
@@ -153,7 +154,7 @@ function smallAppIcon(size) {
   let x = size / 2 - totalW / 2;
   for (const r of ratios) {
     const bh = Math.max(bw, unit * r);
-    fillRoundedRect(c, x, size / 2 - bh / 2, bw, bh, bw / 2, AMBER);
+    fillRoundedRect(c, x, size / 2 - bh / 2, bw, bh, bw / 2, VIOLET);
     x += bw + gap;
   }
   return c;
@@ -268,4 +269,4 @@ if (require.main === module) main();
 
 // The PNG writer, canvas, and glyph are shared with scripts/gen-ios-icons.js
 // so both platforms draw the identical mark from one implementation.
-module.exports = { encodePng, makeCanvas, blendPx, fillRoundedRect, drawBars, appIcon, smallAppIcon, BAR_RATIOS, INK, AMBER, WHITE };
+module.exports = { encodePng, makeCanvas, blendPx, fillRoundedRect, drawBars, appIcon, smallAppIcon, BAR_RATIOS, INK, AMBER, VIOLET, WHITE };

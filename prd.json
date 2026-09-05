@@ -1,5 +1,5 @@
 {
-  "project": "Murmur",
+  "project": "Undertone",
   "version": "0.1.0",
   "tagline": "Speak anywhere on Windows. Murmur types it.",
   "description": "A Windows desktop dictation app with feature parity goals against Wispr Flow: press a hotkey in any app, speak, and clean formatted text is inserted at the cursor. Transcription runs on the Groq API (Whisper) by default, with any OpenAI-compatible endpoint supported for free local options. Built to be shared with coworkers: clone, npm install, add a free Groq key, done.",
@@ -496,6 +496,21 @@
       "priority": 1,
       "passes": false,
       "notes": "Opened 2026-08-26 from Labroi's live iOS report: history showed the polish step prepending Okay or Yes and answering his dictated questions. The transcript wrapper and never-answer footer rules (US-017/US-030 era) were already in place on both platforms, so the model slipped past the prompt and the guard was the last line: none of the tells matched, the existing comply patterns require a colon-style preamble, and an answer that reuses the speaker's vocabulary clears the 0.34 overlap floor. Fix is pure spec data, both platforms compile complyPatterns from the shared file. Scanned all 14 existing chatGuard vectors before adding: the new pattern flips none of them. Known accepted edge: a dictation opening with filler before the affirmation (um okay so...) whose cleanup strips the filler will fail open to the raw transcript, degraded polish, never lost words. Desktop smoke green 2026-08-26 (sharedVectors flipped false before the pattern landed, true after: red-green proven). Remaining for Labroi: the live question-shaped dictation check; flip passes then."
+    },
+    {
+      "id": "US-115",
+      "title": "Rebrand to Undertone",
+      "description": "The clean-room rebuild now owns the murmur name, so this app becomes Undertone: productName, all user-visible strings, and a violet brand mark replacing amber so the two apps are never confused in Finder, the Dock, or the tray. appId stays com.labroi.murmur so macOS permission grants survive. First launch under the new name adopts the old Murmur userData folder wholesale (settings, history, analytics), leaving the original untouched as a fallback.",
+      "acceptanceCriteria": [
+        "productName, window titles, tray menu, notifications, and settings copy all say Undertone",
+        "App icon and small icons draw the mark in violet, recording tray states stay amber",
+        "appId unchanged so existing permission grants keep working",
+        "First run after the rename migrates the Murmur userData folder if the new one is empty",
+        "npm run smoke stays green"
+      ],
+      "priority": 115,
+      "passes": false,
+      "notes": "automated criteria verified 2026-09-05: rename applied across package.json, src, and scripts; icons regenerated violet and verified visually; migration guarded so failure never blocks launch; smoke green (36 checks). Remaining live: Labroi installs the rebuilt app, confirms his settings and history came along, and re-enters the API key once (the safeStorage keychain entry follows the app name)."
     }
   ]
 }

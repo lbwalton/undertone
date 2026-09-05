@@ -301,7 +301,7 @@ function micErrorMessage(err) {
   const name = err && err.name;
   if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
     return platform === 'darwin'
-      ? 'Microphone blocked. System Settings, Privacy & Security, Microphone: allow Murmur.'
+      ? 'Microphone blocked. System Settings, Privacy & Security, Microphone: allow Undertone.'
       : 'Microphone blocked. Windows Settings, Privacy, Microphone: allow desktop apps.';
   }
   if (name === 'NotFoundError' || name === 'OverconstrainedError') {

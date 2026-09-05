@@ -2,7 +2,7 @@
 
 // Hold-to-talk needs global keydown AND keyup, which Electron's globalShortcut
 // cannot see. uiohook-napi ships prebuilt N-API binaries for win32-x64, so it
-// needs no compiler; if it still fails to load on some machine, Murmur runs in
+// needs no compiler; if it still fails to load on some machine, Undertone runs in
 // toggle-only mode and Settings says so.
 
 let uio = null;
